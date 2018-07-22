@@ -73,7 +73,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public boolean isActive() {
+    private boolean isActive() {
         return active;
     }
 
