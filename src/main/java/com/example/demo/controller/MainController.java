@@ -30,7 +30,12 @@ public class MainController {
     private String uploadPath;
 
     @GetMapping("/")
-    public String greeting() {
+    public String greeting(@AuthenticationPrincipal User user, Model model) {
+        String name = "guest";
+        if (user != null) {
+            name = user.getUsername();
+        }
+        model.addAttribute("username", name);
         return "greeting";
     }
 
