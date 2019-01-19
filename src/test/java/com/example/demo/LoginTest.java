@@ -1,6 +1,8 @@
 package com.example.demo;
 
 
+import com.example.demo.controller.MainController;
+import com.example.demo.unit_tests.UnitTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class LoginTest {
 
     @Autowired
+    public MainController mainController;
+
+    @Autowired
     private MockMvc mockMvc;
+
+
 
     @Test
     public void contextLoad() throws Exception {
@@ -36,6 +43,7 @@ public class LoginTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello, guest")))
                 .andExpect(content().string(containsString("Please, login")));
+
 
     }
 
@@ -50,7 +58,7 @@ public class LoginTest {
     @Test
     @Sql(value = {"/create-user-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void correctLoginTest() throws Exception {
-        this.mockMvc.perform(formLogin().user("nico").password("1"))
+        this.mockMvc.perform(formLogin().user("nico").password("nico"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
     }
