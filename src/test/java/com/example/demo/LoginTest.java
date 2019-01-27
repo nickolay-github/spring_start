@@ -1,8 +1,7 @@
 package com.example.demo;
 
 
-import com.example.demo.controller.MainController;
-import com.example.demo.unit_tests.UnitTest;
+import com.example.demo.controller.MessageController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class LoginTest {
 
     @Autowired
-    public MainController mainController;
+    public MessageController mainController;
 
     @Autowired
     private MockMvc mockMvc;

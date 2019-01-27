@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.controller.MainController;
+import com.example.demo.controller.MessageController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class MainControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private MainController mainController;
+    private MessageController mainController;
 
     @Test
     public void mainPageTest() throws Exception {
