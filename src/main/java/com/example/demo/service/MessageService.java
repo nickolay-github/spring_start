@@ -14,18 +14,20 @@ import javax.persistence.EntityManager;
 
 @Service
 public class MessageService {
-    @Autowired
-    private MessageRepository messageRepo;
 
-    public Page<MessageDto> getMessageListByFilter(Pageable pageable, String filter, User user) {
+
+    @Autowired
+    private MessageRepository messageRepository;
+
+    public Page<MessageDto> messageList(Pageable pageable, String filter, User user) {
         if (filter != null && !filter.isEmpty()) {
-            return messageRepo.findByTag(filter, pageable, user);
+            return messageRepository.findByTag(filter, pageable, user);
         } else {
-            return messageRepo.findAll(pageable, user);
+            return messageRepository.findAll(pageable, user);
         }
     }
 
-    public Page<MessageDto> getMessageListForUser(Pageable pageable, User currentUser, User author) {
-        return messageRepo.findByUser(pageable, author, currentUser);
+    public Page<MessageDto> messageListForUser(Pageable pageable, User currentUser, User author) {
+        return messageRepository.findByUser(pageable, author, currentUser);
     }
 }

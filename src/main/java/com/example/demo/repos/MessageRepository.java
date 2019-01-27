@@ -9,14 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
 public interface MessageRepository extends CrudRepository<Message, Long> {
 
     @Query("select new com.example.demo.domain.dto.MessageDto(" +
             "   m, " +
             "   count(ml), " +
-            "   sum(case when ml = :user then 1 else 0 end) > 0" +
+            "   (sum(case when ml = :user then 1 else 0 end) > 0)" +
             ") " +
             "from Message m left join m.likes ml " +
             "group by m")
@@ -25,7 +23,7 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
     @Query("select new com.example.demo.domain.dto.MessageDto(" +
             "   m, " +
             "   count(ml), " +
-            "   sum(case when ml = :user then 1 else 0 end) > 0" +
+            "   (sum(case when ml = :user then 1 else 0 end) > 0)" +
             ") " +
             "from Message m left join m.likes ml " +
             "where m.tag = :tag " +
@@ -35,7 +33,7 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
     @Query("select new com.example.demo.domain.dto.MessageDto(" +
             "   m, " +
             "   count(ml), " +
-            "   sum(case when ml = :user then 1 else 0 end) > 0" +
+            "   (sum(case when ml = :user then 1 else 0 end) > 0)" +
             ") " +
             "from Message m left join m.likes ml " +
             "where m.author = :author " +

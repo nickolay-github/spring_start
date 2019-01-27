@@ -30,18 +30,12 @@ public class Message {
     @ManyToMany
     @JoinTable(
             name = "message_likes",
-            joinColumns = { @JoinColumn(name = "message_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+            joinColumns = { @JoinColumn(name = "message_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id")}
     )
     private Set<User> likes = new HashSet<>();
 
-    public Set<User> getLikes() {
-        return likes;
-    }
 
-    public void setLikes(Set<User> likes) {
-        this.likes = likes;
-    }
 
     public Message() {
     }
@@ -50,6 +44,14 @@ public class Message {
         this.author = user;
         this.text = text;
         this.tag = tag;
+    }
+
+    public Set<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
     }
 
     public String getAuthorName() {
